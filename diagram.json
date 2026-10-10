@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "author": "ColdGuard",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-nano", "id": "nano", "top": 120, "left": 330, "attrs": {} },
+
+    { "type": "wokwi-ds18b20", "id": "temp1", "top": 0, "left": 0, "attrs": { "temperature": "4", "deviceID": "111111111111" } },
+    { "type": "wokwi-ds18b20", "id": "temp2", "top": 110, "left": 0, "attrs": { "temperature": "5", "deviceID": "222222222222" } },
+    { "type": "wokwi-ds18b20", "id": "temp3", "top": 220, "left": 0, "attrs": { "temperature": "8", "deviceID": "333333333333" } },
+    { "type": "wokwi-resistor", "id": "pullup", "top": 150, "left": 120, "rotate": 90, "attrs": { "value": "4700" } },
+
+    { "type": "wokwi-ds1307", "id": "rtc", "top": -60, "left": 620, "attrs": { "initTime": "now" } },
+    { "type": "board-ssd1306", "id": "oled", "top": 80, "left": 620, "attrs": { "i2cAddress": "0x3c" } },
+    { "type": "wokwi-microsd-card", "id": "sdcard", "top": 260, "left": 620, "attrs": {} },
+
+    { "type": "wokwi-pushbutton", "id": "door", "top": 400, "left": 60, "attrs": { "color": "blue", "label": "Door switch", "key": "D" } },
+    { "type": "wokwi-buzzer", "id": "buzzer", "top": 400, "left": 240, "attrs": { "volume": "0.3" } },
+    { "type": "wokwi-led", "id": "alarm_led", "top": 400, "left": 400, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "led_resistor", "top": 450, "left": 470, "attrs": { "value": "220" } }
+  ],
+  "connections": [
+    ["temp1:VCC", "nano:5V", "red", ["v-20", "h200"]],
+    ["temp1:GND", "nano:GND.1", "black", ["v-30", "h210"]],
+    ["temp1:DQ", "nano:2", "green", ["v-40", "h220"]],
+
+    ["temp2:VCC", "nano:5V", "red", ["v-10", "h180"]],
+    ["temp2:GND", "nano:GND.1", "black", ["v-5", "h190"]],
+    ["temp2:DQ", "nano:2", "green", ["v0", "h200"]],
+
+    ["temp3:VCC", "nano:5V", "red", ["v20", "h160"]],
+    ["temp3:GND", "nano:GND.1", "black", ["v30", "h170"]],
+    ["temp3:DQ", "nano:2", "green", ["v40", "h180"]],
+
+    ["pullup:1", "nano:5V", "red", ["h60"]],
+    ["pullup:2", "nano:2", "green", ["h70"]],
+
+    ["rtc:5V", "nano:5V", "red", ["h-40", "v-20"]],
+    ["rtc:GND", "nano:GND.1", "black", ["h-50", "v-10"]],
+    ["rtc:SDA", "nano:A4", "blue", ["h-60"]],
+    ["rtc:SCL", "nano:A5", "yellow", ["h-70"]],
+
+    ["oled:VCC", "nano:5V", "red", ["h-40"]],
+    ["oled:GND", "nano:GND.1", "black", ["h-50"]],
+    ["oled:SDA", "nano:A4", "blue", ["h-60"]],
+    ["oled:SCL", "nano:A5", "yellow", ["h-70"]],
+
+    ["sdcard:VCC", "nano:5V", "red", ["h-40"]],
+    ["sdcard:GND", "nano:GND.1", "black", ["h-50"]],
+    ["sdcard:CS", "nano:10", "orange", ["h-60"]],
+    ["sdcard:DI", "nano:11", "green", ["h-70"]],
+    ["sdcard:DO", "nano:12", "blue", ["h-80"]],
+    ["sdcard:SCK", "nano:13", "yellow", ["h-90"]],
+
+    ["door:1.l", "nano:3", "purple", ["v-20", "h40"]],
+    ["door:2.l", "nano:GND.1", "black", ["v-30", "h50"]],
+
+    ["buzzer:2", "nano:4", "orange", ["v-20"]],
+    ["buzzer:1", "nano:GND.1", "black", ["v-30"]],
+
+    ["alarm_led:A", "nano:5", "red", ["v-20"]],
+    ["alarm_led:K", "led_resistor:1", "orange", ["v20"]],
+    ["led_resistor:2", "nano:GND.1", "black", ["h30", "v-60"]]
+  ],
+  "dependencies": {}
+}
