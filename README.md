@@ -71,4 +71,4 @@ Initial hardware interfaces and service modules are being developed. Full integr
 
 ## Safety
 
-ColdGuard is an educational monitoring prototype, not a certified food-safety or medical monitoring instrument. Its readings and alarms should not be relied upon as the sole means of protecting temperature-sensitive goods.
+ColdGuard is an educational monitoring prototype, not a certified food-safety or medical monitoring instrument. Its readings and alarms should not be relied upon as the sole means of protecting temperature-sensitive goods.z
